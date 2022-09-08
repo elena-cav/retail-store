@@ -9,7 +9,7 @@ functions:
     handler: handler.handle
     events:
       - http:
-          path: /
+          path: /products/{productSKU}
           method: GET
 plugins:
   - serverless-esbuild
