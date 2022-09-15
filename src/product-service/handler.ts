@@ -6,7 +6,7 @@ export const handle = async (
   const sku = event.pathParameters?.productSKU;
   let foundProduct;
   try {
-    foundProduct = getProduct(sku);
+    foundProduct = await getProduct(sku);
   } catch (e) {
     return { statusCode: 400, body: "Product not found" };
   }

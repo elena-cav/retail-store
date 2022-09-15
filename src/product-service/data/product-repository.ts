@@ -1,9 +1,7 @@
-import product from "../models/product";
+import { products, Product } from "../models/product";
 
-const products: product[] = [{ sku: "abc" }, { sku: "cvb" }];
-
-export const getProduct = (sku: string | undefined): product => {
-  const foundProduct = products.find((product) => product.sku === sku);
+export const getProduct = async (sku: string | undefined): Promise<Product> => {
+  const foundProduct = await products.findOne({ sku });
   if (!foundProduct) throw new Error();
   return foundProduct;
 };
