@@ -13,3 +13,5 @@ functions:
           method: GET
 plugins:
   - serverless-esbuild
+  - serverless-offline
+  - serverless-dotenv-plugin

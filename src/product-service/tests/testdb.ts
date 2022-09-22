@@ -7,6 +7,8 @@ module.exports.setUp = async () => {
   mongo = await MongoMemoryServer.create();
   const url = mongo.getUri();
 
+  process.env.MONGOURI = url;
+
   await mongoose.connect(url, {
     useNewUrlParser: true,
   });
