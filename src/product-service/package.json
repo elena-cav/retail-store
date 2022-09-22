@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "container": "docker-compose up",
     "dev": "serverless offline start",
     "seed": "ts-node seed"
   },
