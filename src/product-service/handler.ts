@@ -3,9 +3,10 @@ import { getProduct } from "./data/product-repository";
 import mongoose from "mongoose";
 import { products } from "./models/product";
 
-export const handle = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
+export const handle = async (event: APIGatewayProxyEvent): Promise<any> => {
+  return {
+    statusCode: 500,
+  };
   console.log("ENV URI", process.env.MONGOURI);
   await mongoose.connect(process.env.MONGOURI || "");
 
