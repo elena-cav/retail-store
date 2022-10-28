@@ -4,6 +4,9 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
+  tracing:
+    apiGateway: true
+    lambda: true
 functions:
   ProductServiceApi:
     handler: handler.handle
@@ -15,3 +18,23 @@ plugins:
   - serverless-esbuild
   - serverless-offline
   - serverless-dotenv-plugin
+Resources:
+  resources:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: SQL Injection Alarm
+      ActionsEnabled: true
+      OKActions: []
+      AlarmActions:
+        - arn:aws:sns:eu-west-1:866474589211:Default_CloudWatch_Alarms_Topic
+      InsufficientDataActions: []
+      MetricName: SQL
+      Namespace: Exploit
+      Statistic: Sum
+      Dimensions: []
+      Period: 300
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: missing
