@@ -11,6 +11,9 @@ export const handle = async (event: APIGatewayProxyEvent): Promise<any> => {
       statusCode: 500,
     };
   }
+  if (sku === "SELECT") {
+    throw new Error("Sequel injection detected");
+  }
 
   console.log("ENV URI", process.env.MONGOURI);
   await mongoose.connect(process.env.MONGOURI || "");
